@@ -12,7 +12,7 @@ A simple API that can be installed in other projects that exposes the [Data Mapp
 ## Requirements
 
 - [Data Mapper](https://github.com/dealnews/data-mapper)
-- [Business Objects](https://github.com/dealnews/db)
+- [DB](https://github.com/dealnews/db)
 
 ## Installation
 

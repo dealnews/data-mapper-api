@@ -1,0 +1,45 @@
+{
+    "name": "dealnews/data-mapper-api",
+    "type": "library",
+    "description": "API wrapper around data-mapper library",
+    "config": {
+        "optimize-autoloader": true,
+        "discard-changes": true,
+        "sort-packages": true
+    },
+    "require-dev": {
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "phpunit/phpunit": "^9.2"
+    },
+    "require": {
+        "php": "^8.0",
+        "dealnews/data-mapper": "^3.1",
+        "dealnews/db": "^3.2",
+        "moonspot/value-objects": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "DealNews\\DataMapperAPI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DealNews\\DataMapperAPI\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "phan": [
+            "docker run --rm -e PHAN_DISABLE_XDEBUG_WARN=1 -v `pwd`:/mnt/src -w /mnt/src phanphp/phan:5 -p"
+        ],
+        "test": [
+            "parallel-lint src/ tests/",
+            "phpunit --colors=never"
+        ],
+        "lint": [
+            "parallel-lint src/ tests/"
+        ],
+        "fix": [
+            "~/.composer/vendor/bin/php-cs-fixer fix --config .php_cs.dist src tests"
+        ]
+    }
+}

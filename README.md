@@ -31,7 +31,7 @@ $repo->addMapper("Example", new \DealNews\Example\Mapper());
 ```
 
 You will also need a router of some sort to route API requests to the appropriate code/action. For most cases, you can
-just use the [PageMill Router](https://github.com/dealnews/pagemill-router). To help with building routes for the PageMill
+use the [PageMill Router](https://github.com/dealnews/pagemill-router). To help with building routes for the PageMill
 Router, this library comes with some pre-defined routes and a helper method to make sure input data is properly formatted
 for the API endpoint.
 

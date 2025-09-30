@@ -3,7 +3,6 @@
 namespace DealNews\DataMapperAPI\Tests;
 
 use \DealNews\DataMapperAPI\API;
-use \DealNews\DataMapperAPI\Tests\Repository;
 
 class APITest extends \PHPUnit\Framework\TestCase {
 
@@ -104,4 +103,3 @@ class APITest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals($expect, $routes);
     }
 }
-

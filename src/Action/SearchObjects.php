@@ -49,7 +49,7 @@ class SearchObjects extends Base {
      * @param      ?CRUD         $crud   Optional CRUD object
      * @param      ?SearchQuery  $sq     Optional SearchQuery object
      */
-    public function __construct(CRUD $crud = null, SearchQuery $sq = null) {
+    public function __construct(?CRUD $crud = null, ?SearchQuery $sq = null) {
         $this->crud = $crud;
         $this->sq   = $sq;
     }

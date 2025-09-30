@@ -18,7 +18,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
                 throw $e;
             }
             ob_end_clean();
-            $data =[
+            $data = [
                 'http_status' => $e->getCode(),
                 'error'       => $e->getMessage(),
             ];

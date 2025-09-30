@@ -71,7 +71,7 @@ class Repository extends \DealNews\DataMapper\Repository {
         }
     }
 
-    public function find(string $name, array $filters): array|bool {
+    public function find(string $name, array $filters, ?int $limit = null, ?int $start = null, string $order = ''): array {
         if ($name === 'TestObject') {
             if (isset($filters['test_id'])) {
                 return $this->getMulti($name, [$filters['test_id']]);
@@ -126,7 +126,7 @@ class TestNotDBObjectMapper extends \DealNews\DataMapper\AbstractMapper {
         return null;
     }
 
-    public function find(array $filter): ?array {
+    public function find(array $filter, ?int $limit = null, ?int $start = null, string $order = ''): ?array {
         return null;
     }
 

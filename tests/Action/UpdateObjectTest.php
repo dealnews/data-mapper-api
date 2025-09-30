@@ -3,6 +3,7 @@
 namespace DealNews\DataMapperAPI\Tests\Action;
 
 use \DealNews\DataMapperAPI\Action\UpdateObject;
+use PHPUnit\Framework\Attributes\Depends;
 
 class UpdateObjectTest extends TestCase {
     public function testNew() {
@@ -32,9 +33,7 @@ class UpdateObjectTest extends TestCase {
         return $data['test_id'];
     }
 
-    /**
-     * @depends testNew
-     */
+    #[Depends('testNew')]
     public function testExisting($id) {
         $obj  = new UpdateObject();
         $data = $this->invoke(

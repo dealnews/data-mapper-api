@@ -3,11 +3,11 @@
 namespace DealNews\DataMapperAPI\Tests;
 
 use \DealNews\DataMapperAPI\SearchQuery;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class SearchQueryTest extends \PHPUnit\Framework\TestCase {
-    /**
-     * @dataProvider buildQueryData
-     */
+
+    #[DataProvider('buildQueryData')]
     public function testBuildQuery($input, $expect, $exception = null, $exception_code = null, $mode = 'default') {
         if (!is_null($exception)) {
             $this->expectException($exception);
@@ -24,7 +24,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
-    public function buildQueryData() {
+    public static function buildQueryData() {
         return [
 
             'Invalid Mode' => [

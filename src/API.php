@@ -25,9 +25,9 @@ class API {
      */
     protected array $get_object_route = [
         'type'    => 'regex',
-        'pattern' => '/([^/]+)/(\d+)/',
+        'pattern' => '/([^/]+)/(\\d+)/',
         'method'  => 'GET',
-        'action'  => "\DealNews\DataMapperAPI\Action\GetObject",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\GetObject',
         'tokens'  => [
             'object_name',
             'object_id',
@@ -43,7 +43,7 @@ class API {
         'type'    => 'regex',
         'pattern' => '/([^/]+)/',
         'method'  => 'GET',
-        'action'  => "\DealNews\DataMapperAPI\Action\GetObjects",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\GetObjects',
         'tokens'  => [
             'object_name',
         ],
@@ -58,7 +58,7 @@ class API {
         'type'    => 'regex',
         'pattern' => '/([^/]+)/_search/',
         'method'  => 'POST',
-        'action'  => "\DealNews\DataMapperAPI\Action\SearchObjects",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\SearchObjects',
         'tokens'  => [
             'object_name',
         ],
@@ -71,9 +71,9 @@ class API {
      */
     protected array $update_object_route = [
         'type'    => 'regex',
-        'pattern' => '/([^/]+)/(\d+)/',
+        'pattern' => '/([^/]+)/(\\d+)/',
         'method'  => 'PUT',
-        'action'  => "\DealNews\DataMapperAPI\Action\UpdateObject",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\UpdateObject',
         'tokens'  => [
             'object_name',
             'object_id',
@@ -89,7 +89,7 @@ class API {
         'type'    => 'regex',
         'pattern' => '/([^/]+)/',
         'method'  => 'POST',
-        'action'  => "\DealNews\DataMapperAPI\Action\UpdateObject",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\UpdateObject',
         'tokens'  => [
             'object_name',
         ],
@@ -102,9 +102,9 @@ class API {
      */
     protected array $delete_object_route = [
         'type'    => 'regex',
-        'pattern' => '/([^/]+)/(\d+)/',
+        'pattern' => '/([^/]+)/(\\d+)/',
         'method'  => 'DELETE',
-        'action'  => "\DealNews\DataMapperAPI\Action\DeleteObject",
+        'action'  => '\\DealNews\\DataMapperAPI\\Action\\DeleteObject',
         'tokens'  => [
             'object_name',
             'object_id',
@@ -144,7 +144,7 @@ class API {
         }
 
         if (empty($base_url)) {
-            throw new \LogicException("base_url is not set", 500);
+            throw new \LogicException('base_url is not set', 500);
         }
 
         $tokens['base_url'] = $base_url;

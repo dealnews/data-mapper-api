@@ -76,16 +76,16 @@ class SearchObjects extends Base {
             throw new \LogicException('Invalid search query');
         }
 
+        $crud = $this->crud ?? new CRUD(Factory::init($mapper::DATABASE_NAME));
+
         try {
-            $driver = $this->crud->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+            $driver = $crud->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
             $sq = $this->sq ?? new SearchQuery($driver === 'mysql' ? 'mysql' : 'default');
 
             $query = $sq->prepareQuery($mapper::TABLE, $mapper::PRIMARY_KEY, $json_query);
         } catch (\Throwable $e) {
             throw new \LogicException('Invalid search query: ' . $e->getMessage());
         }
-
-        $crud = $this->crud ?? new CRUD(Factory::init($mapper::DATABASE_NAME));
 
         $rows = $crud->runFetch($query['query'], $query['params']);
 

@@ -47,7 +47,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
             'Select All' => [
                 [],
                 [
-                    'query'  => 'select `test_id` from `test_table`',
+                    'query'  => 'select "test_id" from "test_table"',
                     'params' => [],
                 ],
             ],
@@ -57,7 +57,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     'limit' => 100,
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` limit 100',
+                    'query'  => 'select "test_id" from "test_table" limit 100',
                     'params' => [],
                 ],
             ],
@@ -68,7 +68,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     'start' => '10',
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` limit 10, 100',
+                    'query'  => 'select "test_id" from "test_table" limit 10, 100',
                     'params' => [],
                 ],
             ],
@@ -79,23 +79,23 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     'limit' => 100,
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` limit 10, 100',
+                    'query'  => 'select "test_id" from "test_table" limit 10, 100',
                     'params' => [],
                 ],
             ],
 
-            'Postgres Mode' => [
+            'MySQL Mode' => [
                 [
                     'start' => 10,
                     'limit' => 100,
                 ],
                 [
-                    'query'  => 'select "test_id" from "test_table" limit 100 offset 10',
+                    'query'  => 'select `test_id` from `test_table` limit 10, 100',
                     'params' => [],
                 ],
                 null,
                 null,
-                'pgsql',
+                'mysql',
             ],
 
             'Invalid Limit' => [
@@ -133,7 +133,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` order by `field1` asc, `field2` desc',
+                    'query'  => 'select "test_id" from "test_table" order by "field1" asc, "field2" desc',
                     'params' => [],
                 ],
             ],
@@ -165,7 +165,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `user` = :param0',
+                    'query'  => 'select "test_id" from "test_table" where "user" = :param0',
                     'params' => [
                         'param0' => 'foo',
                     ],
@@ -179,7 +179,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `user` = :param0',
+                    'query'  => 'select "test_id" from "test_table" where "user" = :param0',
                     'params' => [
                         'param0' => 1,
                     ],
@@ -193,7 +193,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `user` is null',
+                    'query'  => 'select "test_id" from "test_table" where "user" is null',
                     'params' => [],
                 ],
             ],
@@ -206,7 +206,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `user` = :param0 and `field2` = :param1',
+                    'query'  => 'select "test_id" from "test_table" where "user" = :param0 and "field2" = :param1',
                     'params' => [
                         'param0' => 'foo',
                         'param1' => 'foo',
@@ -221,7 +221,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `user` in (:param0, :param1)',
+                    'query'  => 'select "test_id" from "test_table" where "user" in (:param0, :param1)',
                     'params' => [
                         'param0' => 'foo',
                         'param1' => 'bar',
@@ -253,7 +253,7 @@ class SearchQueryTest extends \PHPUnit\Framework\TestCase {
                     ],
                 ],
                 [
-                    'query'  => 'select `test_id` from `test_table` where `cost1` >= :param0 and `cost2` > :param1 and `cost3` <= :param2 and `update_date` < :param3 and `create_date` between :param4 and :param5',
+                    'query'  => 'select "test_id" from "test_table" where "cost1" >= :param0 and "cost2" > :param1 and "cost3" <= :param2 and "update_date" < :param3 and "create_date" between :param4 and :param5',
                     'params' => [
                         'param0' => 1,
                         'param1' => 1,

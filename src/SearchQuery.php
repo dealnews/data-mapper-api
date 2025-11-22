@@ -18,7 +18,7 @@ class SearchQuery {
      */
     public const MODES = [
         'default',
-        'pgsql',
+        'mysql',
     ];
 
     /**
@@ -84,7 +84,7 @@ class SearchQuery {
                (empty($order) ? '' : " $order") .
                (empty($limit) ? '' : " $limit");
 
-        if ($this->mode === 'pgsql') {
+        if ($this->mode === 'default') {
             $sql = str_replace('`', '"', $sql);
         }
 

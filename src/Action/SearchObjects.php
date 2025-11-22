@@ -77,7 +77,8 @@ class SearchObjects extends Base {
         }
 
         try {
-            $sq = $this->sq ?? new SearchQuery();
+            $driver = $this->crud->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+            $sq = $this->sq ?? new SearchQuery($driver === 'mysql' ? 'mysql' : 'default');
 
             $query = $sq->prepareQuery($mapper::TABLE, $mapper::PRIMARY_KEY, $json_query);
         } catch (\Throwable $e) {

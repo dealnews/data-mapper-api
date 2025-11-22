@@ -7,9 +7,19 @@ use \DealNews\DataMapperAPI\SearchQuery;
 
 class SearchObjectsTest extends TestCase {
     public function testFound() {
-        $crud = new class extends \DealNews\DB\CRUD {
+        $pdo = new class extends \PDO {
             public function __construct() {
                 // noop
+            }
+
+            public function getAttribute($attribute): mixed {
+                return 'mysql';
+            }
+        };
+
+        $crud = new class($pdo) extends \DealNews\DB\CRUD {
+            public function __construct($pdo) {
+                $this->pdo = $pdo;
             }
 
             public function runFetch(string $query, array $params = []): array {
@@ -48,9 +58,19 @@ class SearchObjectsTest extends TestCase {
     }
 
     public function testNotFound() {
-        $crud = new class extends \DealNews\DB\CRUD {
+        $pdo = new class extends \PDO {
             public function __construct() {
                 // noop
+            }
+
+            public function getAttribute($attribute): mixed {
+                return 'mysql';
+            }
+        };
+
+        $crud = new class($pdo) extends \DealNews\DB\CRUD {
+            public function __construct($pdo) {
+                $this->pdo = $pdo;
             }
 
             public function runFetch(string $query, array $params = []): array {
@@ -119,13 +139,29 @@ class SearchObjectsTest extends TestCase {
     }
 
     public function testSearchQueryException() {
+        $pdo = new class extends \PDO {
+            public function __construct() {
+                // noop
+            }
+
+            public function getAttribute($attribute): mixed {
+                return 'mysql';
+            }
+        };
+
+        $crud = new class($pdo) extends \DealNews\DB\CRUD {
+            public function __construct($pdo) {
+                $this->pdo = $pdo;
+            }
+        };
+
         $sq = new class extends SearchQuery {
             public function prepareQuery(string $table, string $field, array $query): array {
                 throw new \InvalidArgumentException('test exception');
             }
         };
 
-        $obj  = new SearchObjects(null, $sq);
+        $obj  = new SearchObjects($crud, $sq);
         $data = $this->invoke(
             $obj,
             [

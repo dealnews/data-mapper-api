@@ -4,10 +4,11 @@ namespace DealNews\DataMapperAPI\Tests\Action;
 
 use \DealNews\DataMapperAPI\Action\SearchObjects;
 use \DealNews\DataMapperAPI\SearchQuery;
+use DealNews\DB\PDO;
 
 class SearchObjectsTest extends TestCase {
     public function testFound() {
-        $pdo = new class extends \PDO {
+        $pdo = new class extends PDO {
             public function __construct() {
                 // noop
             }
@@ -18,6 +19,12 @@ class SearchObjectsTest extends TestCase {
         };
 
         $crud = new class($pdo) extends \DealNews\DB\CRUD {
+
+            /**
+             * Need to declare this here because PDO is readonly and cannot be set in child class
+             */
+            public readonly PDO $pdo;
+
             public function __construct($pdo) {
                 $this->pdo = $pdo;
             }
@@ -58,7 +65,7 @@ class SearchObjectsTest extends TestCase {
     }
 
     public function testNotFound() {
-        $pdo = new class extends \PDO {
+        $pdo = new class extends PDO {
             public function __construct() {
                 // noop
             }
@@ -69,6 +76,12 @@ class SearchObjectsTest extends TestCase {
         };
 
         $crud = new class($pdo) extends \DealNews\DB\CRUD {
+
+            /**
+             * Need to declare this here because PDO is readonly and cannot be set in child class
+             */
+            public readonly PDO $pdo;
+
             public function __construct($pdo) {
                 $this->pdo = $pdo;
             }
@@ -139,7 +152,7 @@ class SearchObjectsTest extends TestCase {
     }
 
     public function testSearchQueryException() {
-        $pdo = new class extends \PDO {
+        $pdo = new class extends PDO {
             public function __construct() {
                 // noop
             }
@@ -150,6 +163,12 @@ class SearchObjectsTest extends TestCase {
         };
 
         $crud = new class($pdo) extends \DealNews\DB\CRUD {
+
+            /**
+             * Need to declare this here because PDO is readonly and cannot be set in child class
+             */
+            public readonly PDO $pdo;
+
             public function __construct($pdo) {
                 $this->pdo = $pdo;
             }
